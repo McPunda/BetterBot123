@@ -1,0 +1,30 @@
+module.exports = {
+    name: 'createticket',
+    aliases: ['create', 'alias2', 'alias3'],
+    category: 'moderation',
+    run: async (client, message, args) => {
+        const sayMessage = args.join(" ");
+        let name = message.author.username;
+        const channel = await message.guild.createChannel(`${message.author.username} ${sayMessage}`, 'text')
+        await channel.setParent('644617887922782231');
+        await message.reply(`Ticket Made ${message.author.username}-${sayMessage}`)
+        channel.replacePermissionOverwrites({
+            overwrites: [
+                {
+                    id: '645652519845888030',
+                    deny: ['VIEW_CHANNEL'],
+                },
+                {
+                    id: '645652519845888030',
+                    deny: ['VIEW_CHANNEL'],
+                },
+                {
+                    id: '644613286846922771',
+                    deny: ['VIEW_CHANNEL'],
+                },
+                {
+                    id: message.author.id,
+                    allow: ['VIEW_CHANNEL'],
+                },
+            ],
+        });}}
